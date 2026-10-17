@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="sea" cx="50%" cy="42%" r="70%">
+      <stop offset="0" stop-color="#2d5f9a"/>
+      <stop offset="0.55" stop-color="#173459"/>
+      <stop offset="1" stop-color="#0b1a30"/>
+    </radialGradient>
+    <linearGradient id="white" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e3e9f3"/>
+    </linearGradient>
+    <linearGradient id="wingShade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.55" stop-color="#eef2f8"/>
+      <stop offset="1" stop-color="#bccbe2"/>
+    </linearGradient>
+    <linearGradient id="mask" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2c4f9e"/>
+      <stop offset="1" stop-color="#1d3672"/>
+    </linearGradient>
+    <radialGradient id="pika" cx="50%" cy="40%" r="60%">
+      <stop offset="0" stop-color="#ffe45a"/>
+      <stop offset="1" stop-color="#fbcf2c"/>
+    </radialGradient>
+  </defs>
+
+  <!-- background: night sea -->
+  <rect width="512" height="512" fill="url(#sea)"/>
+  <g fill="#ffe680" opacity="0.9">
+    <path d="M70 80l5 12 13 2-10 8 3 13-11-7-11 7 3-13-10-8 13-2z"/>
+    <path d="M444 60l4 9 10 1-8 6 2 10-8-5-9 5 3-10-8-6 10-1z"/>
+    <path d="M470 236l3 7 8 1-6 5 2 8-7-4-7 4 2-8-6-5 8-1z"/>
+    <circle cx="86" cy="448" r="3"/><circle cx="412" cy="160" r="2.5"/><circle cx="46" cy="190" r="2.5"/>
+  </g>
+
+  <g stroke="#1b2333" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+    <!-- Lugia "hand" wings spread from the cape (left drawn, right mirrored) -->
+    <g id="wing">
+      <path d="M196 372 C168 320 124 276 74 256
+               C58 252 46 262 52 274 C60 284 70 288 80 290
+               C58 290 38 296 38 310 C40 322 56 324 74 320
+               C56 330 44 342 50 354 C58 364 74 358 90 348
+               C80 362 76 378 88 384 C100 388 110 376 120 362
+               C134 380 160 392 196 400 Z" fill="url(#wingShade)"/>
+      <path d="M80 290 C100 292 118 298 132 308 M74 320 C96 318 116 322 134 332 M90 348 C108 342 126 342 142 350" fill="none" stroke="#9fb2cf" stroke-width="4"/>
+    </g>
+    <use href="#wing" transform="translate(512 0) scale(-1 1)"/>
+
+    <!-- cape -->
+    <path d="M166 356 C150 400 158 444 184 480 L328 480 C354 444 362 400 346 356 Z" fill="url(#white)"/>
+    <!-- Lugia's dark back spines along the cape edges -->
+    <path d="M168 398 l-26 6 22 14 z M164 432 l-24 10 24 10 z M346 398 l26 6 -22 14 z M348 432 l24 10 -24 10 z" fill="url(#mask)" stroke-width="5"/>
+    <!-- Pikachu body + paws -->
+    <path d="M206 480 C200 440 210 406 230 388 L282 388 C302 406 312 440 306 480 Z" fill="url(#pika)"/>
+
+    <!-- hood back + side flaps (Lugia's head and neck) -->
+    <path d="M150 372 C126 300 132 196 188 148 C220 120 292 120 324 148 C380 196 386 300 362 372 C344 360 334 340 328 318 L184 318 C178 340 168 360 150 372 Z" fill="url(#white)"/>
+    <!-- two blue spikes at the back of Lugia's head -->
+    <path d="M190 158 C172 146 160 132 154 116 C174 120 192 130 204 144 Z" fill="url(#mask)"/>
+    <path d="M322 158 C340 146 352 132 358 116 C338 120 320 130 308 144 Z" fill="url(#mask)"/>
+
+    <!-- Pikachu face -->
+    <path d="M160 322 C160 270 204 248 256 248 C308 248 352 270 352 322 C352 372 310 400 256 400 C202 400 160 372 160 322 Z" fill="url(#pika)"/>
+
+    <!-- Lugia upper jaw: brim over the forehead, beak in the middle, red mouth just underneath -->
+    <path d="M176 292 C184 270 214 262 256 262 C298 262 328 270 336 292 C318 282 296 280 280 282 C270 296 242 296 232 282 C216 280 194 282 176 292 Z" fill="#e0475a" stroke-width="5"/>
+    <path d="M168 288 C164 250 176 228 196 214 C220 200 292 200 316 214 C336 228 348 250 344 288
+             C330 274 306 268 286 270 C278 286 264 294 256 294 C248 294 234 286 226 270 C206 268 182 274 168 288 Z" fill="url(#white)"/>
+    <!-- beak ridge and nostrils -->
+    <path d="M232 238 C240 226 272 226 280 238" fill="none" stroke="#b9c7dc" stroke-width="4"/>
+    <path d="M247 252 l2 4 M265 252 l-2 4" stroke-width="4"/>
+
+    <!-- Lugia eye masks: blue streaks sweeping up and back -->
+    <path d="M228 212 C216 200 198 196 182 200 C170 192 156 186 140 186 C150 196 158 210 168 222 C188 234 216 230 228 212 Z" fill="url(#mask)"/>
+    <path d="M284 212 C296 200 314 196 330 200 C342 192 356 186 372 186 C362 196 354 210 344 222 C324 234 296 230 284 212 Z" fill="url(#mask)"/>
+    <path d="M184 212 C194 202 210 200 222 208 C214 220 198 222 186 218 Z" fill="#ffffff" stroke-width="4"/>
+    <path d="M328 212 C318 202 302 200 290 208 C298 220 314 222 326 218 Z" fill="#ffffff" stroke-width="4"/>
+    <circle cx="208" cy="211" r="5" fill="#1b2333" stroke="none"/>
+    <circle cx="304" cy="211" r="5" fill="#1b2333" stroke="none"/>
+
+    <!-- Pikachu features, card style -->
+    <ellipse cx="214" cy="326" rx="15" ry="18" fill="#2a1b12"/>
+    <ellipse cx="298" cy="326" rx="15" ry="18" fill="#2a1b12"/>
+    <ellipse cx="174" cy="358" rx="20" ry="17" fill="#e8463a" stroke-width="5"/>
+    <ellipse cx="338" cy="358" rx="20" ry="17" fill="#e8463a" stroke-width="5"/>
+    <path d="M240 352 C246 362 254 362 256 352 C258 362 266 362 272 352" fill="none" stroke-width="5"/>
+
+    <!-- clasp -->
+    <circle cx="256" cy="400" r="14" fill="#cfd9ea"/>
+  </g>
+  <!-- highlights -->
+  <circle cx="209" cy="319" r="6" fill="#fff"/>
+  <circle cx="293" cy="319" r="6" fill="#fff"/>
+  <circle cx="219" cy="334" r="2.5" fill="#fff" opacity="0.8"/>
+  <circle cx="303" cy="334" r="2.5" fill="#fff" opacity="0.8"/>
+  <circle cx="256" cy="341" r="2.5" fill="#2a1b12"/>
+  <path d="M206 160 C222 146 242 140 262 140" fill="none" stroke="#ffffff" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="256" cy="400" r="7" fill="#3c63ad"/>
+  <circle cx="252" cy="396" r="3" fill="#ffffff"/>
+</svg>

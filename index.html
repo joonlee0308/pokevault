@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>PokéVault</title>
+<meta name="theme-color" content="#151a23">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="PokéVault">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Onest:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <aside class="rail">
+    <a class="brand" href="#pokedex" aria-label="PokéVault home"><span class="lens"></span><b>Vault</b></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#pokedex" data-view="pokedex"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2.5"/><circle cx="9" cy="8" r="2"/><path d="M7 14h10M7 17.5h6"/></svg>Pokédex</a>
+      <a href="#sets" data-view="sets"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="3" width="12" height="16" rx="2"/><path d="M5 6.5v12A2.5 2.5 0 0 0 7.5 21H15"/></svg>Expansions</a>
+      <a href="#portfolio" data-view="portfolio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5M4 19h16"/><path d="m7 15 4-4 3 3 5-6"/></svg>Portfolio<span class="soon">Soon</span></a>
+      <a href="#trades" data-view="trades"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 7h12l-3-3M17 17H5l3 3"/></svg>Buy &amp; Sell<span class="soon">Soon</span></a>
+      <a href="#market" data-view="market"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4M8.5 12l2-2 1.5 1.5 2.5-3"/></svg>Market<span class="soon">Soon</span></a>
+    </nav>
+    <button class="themebtn" id="themeBtn" aria-label="Switch light or dark theme" title="Theme"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></svg></button>
+  </aside>
+
+  <main>
+    <!-- POKÉDEX -->
+    <section class="view" id="view-pokedex">
+      <div class="head">
+        <div><div class="eyebrow">National Dex · Gen I–IX</div><h1>Pokédex</h1></div>
+        <div class="count" id="count"></div>
+      </div>
+      <div class="controls">
+        <div class="row">
+          <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search by name or number" autocomplete="off" aria-label="Search Pokémon"></label>
+          <select id="gen" aria-label="Generation"></select>
+          <select id="sort" aria-label="Sort">
+            <option value="id">No. ascending</option>
+            <option value="-id">No. descending</option>
+            <option value="name">Name A–Z</option>
+            <option value="-bst">Base stat total</option>
+            <option value="-s0">HP</option>
+            <option value="-s1">Attack</option>
+            <option value="-s2">Defense</option>
+            <option value="-s3">Sp. Atk</option>
+            <option value="-s4">Sp. Def</option>
+            <option value="-s5">Speed</option>
+          </select>
+          <button class="toggle" id="legBtn" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m12 3 2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7Z"/></svg>Legendary</button>
+          <button class="toggle" id="favBtn" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg>Favourites</button>
+        </div>
+        <div class="row" style="flex-wrap:nowrap">
+          <div class="types" id="types" role="group" aria-label="Filter by type (pick up to two)"></div>
+          <button class="clear" id="clearBtn" hidden>Clear</button>
+        </div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </section>
+
+    <!-- EXPANSIONS: list -->
+    <section class="view" id="view-sets" hidden>
+      <div class="head">
+        <div><div class="eyebrow">Pokémon TCG · 1996 to today</div><h1>Expansions</h1></div>
+        <div class="count" id="setCount"></div>
+      </div>
+      <div class="controls">
+        <div class="row">
+          <div class="seg" role="group" aria-label="Language" id="langSeg">
+            <button data-lang="en" aria-pressed="true">English</button>
+            <button data-lang="ja" aria-pressed="false">Japanese</button>
+            <button data-lang="all" aria-pressed="false">Both</button>
+          </div>
+          <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="setQ" type="search" placeholder="Search sets" autocomplete="off" aria-label="Search sets"></label>
+          <select id="setSort" aria-label="Sort sets">
+            <option value="new">Newest first</option>
+            <option value="old">Oldest first</option>
+            <option value="value">Set value, high to low</option>
+            <option value="top">Top card price</option>
+          </select>
+        </div>
+      </div>
+      <div id="setList"><div class="loading">Loading expansions…</div></div>
+    </section>
+
+    <!-- EXPANSIONS: one set -->
+    <section class="view" id="view-set" hidden>
+      <button class="back" id="setBack"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 5-7 7 7 7"/></svg>All expansions</button>
+      <div id="setHead"></div>
+      <div class="controls">
+        <div class="row">
+          <label class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="cardQ" type="search" placeholder="Search cards in this set" autocomplete="off" aria-label="Search cards"></label>
+          <select id="cardSort" aria-label="Sort cards">
+            <option value="-p">Price, high to low</option>
+            <option value="p">Price, low to high</option>
+            <option value="-mom">Trending up</option>
+            <option value="mom">Trending down</option>
+            <option value="n">Card number</option>
+          </select>
+          <select id="cardRarity" aria-label="Rarity"></select>
+        </div>
+      </div>
+      <div class="cards" id="cardGrid"></div>
+      <button class="more" id="cardMore" hidden>Show more cards</button>
+    </section>
+
+    <!-- COMING SOON -->
+    <section class="view soonview" id="view-portfolio" hidden>
+      <div class="eyebrow">Planned</div><h1>Portfolio</h1>
+      <p class="lead">Everything you own in one place, valued at today's market price, so you can see what your collection is worth and how it has moved.</p>
+      <ul class="plan">
+        <li><i></i><div><b>Holdings</b><span>Sealed product, raw singles and graded slabs, each with cost basis and quantity.</span></div></li>
+        <li><i></i><div><b>Live valuation</b><span>Current market value per item and for the whole collection, with gain or loss against what you paid.</span></div></li>
+        <li><i></i><div><b>Value over time</b><span>A chart of your collection's value by week and month.</span></div></li>
+      </ul>
+      <p style="margin-top:22px"><span class="status">Next up</span></p>
+    </section>
+    <section class="view soonview" id="view-trades" hidden>
+      <div class="eyebrow">Planned</div><h1>Buy &amp; Sell</h1>
+      <p class="lead">A ledger of every purchase and sale, with fees and shipping included, so your real profit is always clear.</p>
+      <ul class="plan">
+        <li><i></i><div><b>Transaction log</b><span>Date, item, platform, price, fees and shipping for every buy and sell.</span></div></li>
+        <li><i></i><div><b>Realised profit</b><span>Net profit per sale and totals by month, platform and set.</span></div></li>
+        <li><i></i><div><b>Spending tracker</b><span>Monthly spend against a budget you set.</span></div></li>
+      </ul>
+    </section>
+    <section class="view soonview" id="view-market" hidden>
+      <div class="eyebrow">Planned</div><h1>Market</h1>
+      <p class="lead">Price trends and signals to help you decide what to buy, hold or sell, and where your money goes furthest.</p>
+      <ul class="plan">
+        <li><i></i><div><b>Watchlist</b><span>Track cards and sealed products you are thinking of buying, with price alerts.</span></div></li>
+        <li><i></i><div><b>Trends</b><span>Movers by set and product type, plus upcoming releases and reprint risk.</span></div></li>
+        <li><i></i><div><b>Spend smarter</b><span>Suggestions based on your budget, your holdings and recent price movement.</span></div></li>
+      </ul>
+    </section>
+  </main>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<aside class="sheet" id="sheet" aria-hidden="true" aria-label="Details">
+  <div class="sheet-top">
+    <span class="no" id="dNo"></span>
+    <button class="icon" id="dPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 5-7 7 7 7"/></svg></button>
+    <button class="icon" id="dNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 5 7 7-7 7"/></svg></button>
+    <button class="icon" id="dFav" aria-label="Favourite" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z"/></svg></button>
+    <button class="icon" id="dClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <div class="sheet-body" id="dBody"></div>
+</aside>
+
+<script src="dex.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
