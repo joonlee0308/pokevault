@@ -55,7 +55,7 @@ class Layer:
     def out(s): return s.im.resize((1024,1024),Image.LANCZOS)
 
 
-def compose(back,front,pika_file):
-    bg=Image.open(S+'bg.svg.png').convert('RGBA').resize((1024,1024))
+def compose(back,front,pika_file,transparent=False):
+    bg=Image.new('RGBA',(1024,1024),(0,0,0,0)) if transparent else Image.open(S+'bg.svg.png').convert('RGBA').resize((1024,1024))
     bg.alpha_composite(back.out()); bg.alpha_composite(Image.open(S+pika_file).convert('RGBA')); bg.alpha_composite(front.out())
     return bg

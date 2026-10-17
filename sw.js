@@ -1,5 +1,5 @@
 // Network first, falling back to the last saved copy when offline.
-const CACHE = 'pokevault-v1';
+const CACHE = 'pokevault-v2';
 self.addEventListener('install', e => self.skipWaiting());
 self.addEventListener('activate', e => e.waitUntil(self.clients.claim()));
 self.addEventListener('fetch', e => {

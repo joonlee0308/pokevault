@@ -31,10 +31,11 @@ for d in (MASK_L,M(MASK_L)): back.shape(d,fill=NAVY)
 for d in (EYE_L,M(EYE_L)): back.shape(d,fill=WHITE,w=4)
 back.shape('M398 293 m0 0',stroke=None)
 front.shape(BRIM,fill=WHITE)
-img=compose(back,front,'pika_only2.png')
+TRANSPARENT='--transparent' in sys.argv
+img=compose(back,front,'pika_only2.png',TRANSPARENT)
 # pupils + eye shine
 from PIL import ImageDraw
 d=ImageDraw.Draw(img)
 for x in (400,2*CX-400):
     d.ellipse([x-10,286,x+10,306],fill=INK[:3]); d.ellipse([x-6,288,x-1,293],fill=(255,255,255))
-img.convert('RGB').save(os.path.join(S,'..','logo-lugia2.png')); print('ok')
+img.save(os.path.join(S,'figure.png')) if TRANSPARENT else img.convert('RGB').save(os.path.join(S,'..','logo-lugia2.png')); print('ok')
